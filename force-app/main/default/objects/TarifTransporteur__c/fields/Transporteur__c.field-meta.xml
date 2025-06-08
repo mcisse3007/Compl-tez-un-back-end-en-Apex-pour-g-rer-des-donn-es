@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transporteur__c</fullName>
+    <externalId>false</externalId>
+    <label>Transporteur</label>
+    <referenceTo>Transporteur__c</referenceTo>
+    <relationshipLabel>Tarifs</relationshipLabel>
+    <relationshipName>Tarifs</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

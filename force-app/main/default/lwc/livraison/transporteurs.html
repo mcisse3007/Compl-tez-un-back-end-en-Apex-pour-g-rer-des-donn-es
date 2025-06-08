@@ -1,0 +1,32 @@
+<!-- c/myModal.html -->
+
+<template>
+    <lightning-modal-header label="Transporteurs"></lightning-modal-header>
+    <lightning-modal-body>   
+        <template for:each={options} for:item="option">
+            <div key={option.Id} class="c-container">
+                <lightning-card  variant="Narrow" title={option.Transporteur__r.Name} icon-name="utility:transport_heavy_truck">
+                    <template if:true={option.isMoinsCher}>
+                        <p>Le moins Cher</p>
+                    </template>
+                    <template if:true={option.isPlusRapide}>
+                        <p>Le plus Rapide</p>
+                    </template>
+                    <lightning-button label="Choose transporteur"  data-id={option.Transporteur__c} slot="actions" onclick={handleOptionClick}></lightning-button>
+                    <div class={option.classe}>
+                        <lightning-record-view-form
+                            record-id={option.Id}
+                            object-api-name="TarifTransporteur__c"
+                        >
+                            <div class="slds-box">
+                                <lightning-output-field field-name="Tarif__c"> </lightning-output-field>
+                                <lightning-output-field field-name="DelaiLivraison__c"></lightning-output-field>
+                            </div>
+                        </lightning-record-view-form>
+                    </div>
+                    
+                </lightning-card>
+            </div>
+        </template>
+    </lightning-modal-body>
+</template>

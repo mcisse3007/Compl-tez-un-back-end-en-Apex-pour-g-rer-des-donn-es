@@ -1,0 +1,40 @@
+<template >
+    <div class="container">
+        <template lwc:if={livraison}>
+            <div class="c-container">
+                <lightning-card  variant="Narrow" title={livraison.Name} icon-name="utility:plane">
+                    <template lwc:if={canChooseTransporteur}>
+                        <lightning-button label="Choose transporteur" slot="actions" onclick={handleChooseTransporteur}></lightning-button>
+                    </template>
+                    <template lwc:if={hasTransporteur}>
+                        <lightning-record-view-form
+                        record-id={livraison.Transporteur__c}
+                        object-api-name="Transporteur__c"> 
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                    </lightning-record-view-form>
+                    </template>
+                    <div>
+
+                    
+                        <lightning-record-view-form
+                            record-id={livraison.Id}
+                            object-api-name="Livraison__c"
+                        >
+                            <div class="slds-box">
+                                <lightning-output-field field-name="Pays__c"> </lightning-output-field>
+                                <lightning-output-field field-name="Tarif__c"> </lightning-output-field>
+                                <lightning-output-field field-name="StatutLivraison__c"></lightning-output-field>
+                                <lightning-output-field field-name="DateExpedition__c"></lightning-output-field>
+                                <lightning-output-field field-name="DateReceptionEstimee__c"></lightning-output-field>
+                                <lightning-output-field field-name="DateReception__c"></lightning-output-field>
+                            </div>
+                        </lightning-record-view-form>
+                    </div>
+                </lightning-card>
+            </div>
+            
+        </template>
+    
+    </div>
+    
+</template>

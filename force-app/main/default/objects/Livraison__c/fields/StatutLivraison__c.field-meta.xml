@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StatutLivraison__c</fullName>
+    <externalId>false</externalId>
+    <label>Statut Livraison</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>En attente</fullName>
+                <default>true</default>
+                <label>En attente</label>
+            </value>
+            <value>
+                <fullName>En préparation</fullName>
+                <default>false</default>
+                <label>En préparation</label>
+            </value>
+            <value>
+                <fullName>Expédiée</fullName>
+                <default>false</default>
+                <label>Expédiée</label>
+            </value>
+            <value>
+                <fullName>Livrée</fullName>
+                <default>false</default>
+                <label>Livrée</label>
+            </value>
+            <value>
+                <fullName>Échouée</fullName>
+                <default>false</default>
+                <label>Échouée</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
