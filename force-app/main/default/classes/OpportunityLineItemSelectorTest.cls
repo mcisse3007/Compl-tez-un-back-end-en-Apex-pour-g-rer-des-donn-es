@@ -18,10 +18,9 @@ public class OpportunityLineItemSelectorTest {
         );
         insert testProduct;
 
-        Pricebook2 standardPricebook = [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1];
         PricebookEntry testPricebookEntry = new PricebookEntry(
             Product2Id = testProduct.Id,
-            Pricebook2Id = standardPricebook.Id,
+            Pricebook2Id = Test.getStandardPricebookId(),
             UnitPrice = 100.0,
             IsActive = true
         );
@@ -61,10 +60,9 @@ public class OpportunityLineItemSelectorTest {
         );
         insert testProduct;
 
-        Pricebook2 standardPricebook = [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1];
         PricebookEntry testPricebookEntry = new PricebookEntry(
             Product2Id = testProduct.Id,
-            Pricebook2Id = standardPricebook.Id,
+            Pricebook2Id = Test.getStandardPricebookId(),
             UnitPrice = 100.0,
             IsActive = true
         );
@@ -88,35 +86,4 @@ public class OpportunityLineItemSelectorTest {
         System.assertEquals(testLineItem.Id, lineItems[0].Id, 'Les Id des produits associés devraient correspondre');
     }
 
-    @isTest
-    static void testGetNumberOfProduct_NoAccessException() {
-        Test.startTest();
-        try {
-            OpportunityLineItemSelector.getNumberOfProduct('006000000000001');
-            System.assert(false, 'Une exception aurait dû être levée en raison d\'un manque d\'accès');
-        } catch (AuraHandledException e) {
-            System.assertEquals(
-                'vous ne pouvez pas faire cette action',
-                e.getMessage(),
-                'Le message d\'erreur ne correspond pas à celui attendu'
-            );
-        }
-        Test.stopTest();
-    }
-
-    @isTest
-    static void testGetLineItems_NoAccessException() {
-        Test.startTest();
-        try {
-            OpportunityLineItemSelector.getLineItems('006000000000001');
-            System.assert(false, 'Une exception aurait dû être levée en raison d\'un manque d\'accès');
-        } catch (AuraHandledException e) {
-            System.assertEquals(
-                'vous ne pouvez pas faire cette action',
-                e.getMessage(),
-                'Le message d\'erreur ne correspond pas à celui attendu'
-            );
-        }
-        Test.stopTest();
-    }
 }

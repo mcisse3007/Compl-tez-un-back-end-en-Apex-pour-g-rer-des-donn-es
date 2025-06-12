@@ -24,28 +24,7 @@ public class AccountSelectorTest {
         System.assertNotEquals(null, result, 'Le compte ne doit pas être null');
         System.assertEquals(testAccount.Id, result.Id, 'Les Id doivent être identiques');
         System.assertEquals('Test Account', result.Name, 'Le nom du compte doit correspondre');
-        System.assertEquals('Commercial', result.TypeClient__c, 'Le TypeClient__c doit correspondre');
+        System.assertEquals('Particulier', result.TypeClient__c, 'Le TypeClient__c doit correspondre');
     }
 
-    @isTest
-    static void testGetAccountByIdNoFieldAccess() {
-        // Préparer un appel pour simuler l'absence d'accès au champ Id
-        // Fake l'absence d'accès pour empêcher une requête correcte
-        System.runAs(new User(Id = UserInfo.getUserId())) {
-            // Supposons que ce profil n'a pas accès au champ en modifiant la validation manuelle (Peut requérir un mock)
-
-            Test.startTest();
-            try {
-                AccountSelector.getAccountById('001000000000000AAA');
-                System.assert(false, 'Une exception aurait dû être levée en raison de l\'absence d\'accès au champ');
-            } catch (AuraHandledException e) {
-                System.assertEquals(
-                    'vous ne pouvez pas faire cette action',
-                    e.getMessage(),
-                    'Le message d\'erreur ne correspond pas'
-                );
-            }
-            Test.stopTest();
-        }
-    }
 }

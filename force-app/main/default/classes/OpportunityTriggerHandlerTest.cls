@@ -5,7 +5,7 @@ public class OpportunityTriggerHandlerTest {
         // Création d'un compte
         Account testAccount = new Account(
             Name = 'Test Account',
-            TypeClient__c = 'Standard',
+            TypeClient__c = 'Particulier',
             ShippingStreet = '123 Test Street',
             ShippingCity = 'Test City',
             ShippingState = 'Test State',
@@ -15,13 +15,12 @@ public class OpportunityTriggerHandlerTest {
         insert testAccount;
 
         // Création d'une opportunité
-        Pricebook2 standardPricebook = [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1];
         Opportunity testOpportunity = new Opportunity(
             Name = 'Test Opportunity',
             StageName = 'Prospecting',
             CloseDate = System.today().addDays(30),
             AccountId = testAccount.Id,
-            Pricebook2Id = standardPricebook.Id
+            Pricebook2Id = Test.getStandardPricebookId()
         );
         insert testOpportunity;
 
@@ -33,7 +32,7 @@ public class OpportunityTriggerHandlerTest {
         insert testProduct;
 
         PricebookEntry testPricebookEntry = new PricebookEntry(
-            Pricebook2Id = standardPricebook.Id,
+            Pricebook2Id = Test.getStandardPricebookId(),
             Product2Id = testProduct.Id,
             UnitPrice = 100,
             IsActive = true

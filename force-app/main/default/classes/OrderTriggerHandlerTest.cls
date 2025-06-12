@@ -13,11 +13,16 @@ public class OrderTriggerHandlerTest {
         );
         insert livraison;
 
-        Transporteur__c transporteur = new Transporteur__c();
+        Transporteur__c transporteur = new Transporteur__c(Name = 'Test Transporteur', 
+        TypeClientAutorise__c = 'Particulier', 
+        ExternalId__c = '1');
         insert transporteur;
 
         TarifTransporteur__c tarif = new TarifTransporteur__c(
-            DelaiLivraison__c = 5
+            Pays__c = 'France',
+            Tarif__c = 10,
+            DelaiLivraison__c = 5,
+            Transporteur__c = transporteur.Id,
         );
         insert tarif;
 
